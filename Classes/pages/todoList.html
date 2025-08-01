@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it" class="html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TodoList</title>
+
+    <script src="../classes/Colors.js"></script>
+    <script src="../classes/DynamicHtmlListMaker.js"></script>
+
+    <link rel="stylesheet" href="../styles/text.css">
+    <link rel="stylesheet" href="../styles/button.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/select.css">
+    <link rel="stylesheet" href="../styles/cards.css">
+    <link rel="stylesheet" href="../styles/input.css">
+</head>
+
+<body class="body">
+    <style>
+        .todo{
+            font-family:monospace;
+            font-weight: 800;
+            font-size:15p x;
+            color:#38BDF8;
+            text-decoration: none;
+        }
+        #todoList, .todo, .paragraph {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+    </style>
+
+    <div class="page-wrapper">
+
+        <!--title-->
+        <div class="row columns-1">
+            <div class="col header-col">
+                <header class="header">
+                    <h1 class="paragraph" style="color:#fefefe;font-size: 30px;">TodoList</h1>
+                </header>
+            </div>
+        </div>
+
+        <!--list adder-->
+        <div class="row columns-1 center-content">
+            <div class="col" style="display: flex; gap: 1rem; align-items: center; justify-content: center;">
+                <input class="input" id="textInput" type="text" style="width:100%;max-width:350px;height:30px;">
+                <button class="button button-green" id="listAdder" style="border-radius:50%;min-width:40px;height:40px;" onclick="addToList()">+</button>
+            </div>
+        </div>
+
+        <!--list-->
+        <div class="row columns-1">
+            <div class="col" style="padding-left:10px;padding-right:10px;">
+                <div id="todoList" style="width:100%;"></div>
+            </div>
+        </div>
+
+        <!--footer-->
+        <div class="row columns-1">
+            <div class="col" style="align-items: center;justify-content: left;">
+                <footer class="footer" style="padding-top:20px;padding-bottom:20px;">
+                    <div class="row columns-2 center-content-hv">
+                        <p class="paragraph" style="color:#fefefe;font-size: 15px;">[TodoList]</p>
+                        <a class="button button-red" href="index.html" style="text-decoration: none;height:fit-content">back to main page</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function addToList() {
+            container.style.display = "block";
+            let text = document.getElementById("textInput").value;
+            if(text === "")
+                return;
+            let id = "listID" + (lastId + 1)
+            DynamicHtmlListMaker.concatListToElement(container, "p", 1, {
+                style: {
+                    width: "100%",
+                    paddingLeft: "10px",
+                    paddingRight: "10px",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    fontSize: "20px",
+                    wordWrap: "break-word",
+                    overflowWrap: "break-word",
+                    textAlign: "center",
+                },
+                class: "todo",
+                listText: [text],
+                idList: [id],
+                text: "",
+                html: "",
+            });
+
+            document.getElementById(id).addEventListener("click", function () {
+                if (this.style.textDecoration === "line-through") {
+                    this.style.textDecoration = "none";
+                    this.style.class = "paragraph";
+                    this.style.color=Colors.getColor("sky2");
+                }
+                else {
+                    this.style.textDecoration = "line-through";
+                    this.style.color = Colors.getColor("red2");
+                }
+            })
+            lastId++;
+        }
+
+
+        let container = document.getElementById("todoList");
+        let lastId = 0;
+
+        container.style.gap = "2rem";
+        container.style.background = Colors.getColorAlpha("gray6", "AF");
+        container.style.borderRadius = "8px";
+        container.style.border = "2px solid " + Colors.getColor("gray5");
+        container.style.boxShadow = "5px 4px 3px " + Colors.getColor("gray6");
+        container.style.width = "100%";
+        container.style.display="none";
+
+        DynamicHtmlListMaker.concatListToElement(container, "p", 0, {
+            style: {
+                width: "100%",
+                paddingLeft: "10px",
+                paddingRight: "10px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                fontSize: "20px",
+                wordWrap: "break-word",
+                overflowWrap: "break-word",
+                textAlign: "center",
+            },
+            class: "paragraph",
+            listText: [],
+            idList: [],
+            text: "",
+            html: "",
+        });
+
+        document.getElementById("textInput").addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                addToList();
+            }
+        });
+
+    </script>
+</body>
+
+</html>

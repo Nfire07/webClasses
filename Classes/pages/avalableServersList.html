@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="it" class="html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ServersList</title>
+
+    <script src="../classes/Colors.js"></script>
+    <script src="../classes/DynamicHtmlListMaker.js"></script>
+
+    <link rel="stylesheet" href="../styles/text.css">
+    <link rel="stylesheet" href="../styles/button.css">
+    <link rel="stylesheet" href="../styles/layout.css">
+    <link rel="stylesheet" href="../styles/select.css">
+    <link rel="stylesheet" href="../styles/cards.css">
+    <link rel="stylesheet" href="../styles/input.css">
+    
+</head>
+
+<body class="body">
+
+    <!--list item for servers list-->
+    <style>
+        .serverP{
+            font-family:monospace;
+            font-weight: 800;
+            font-size:15px;
+            color:#1f1f1f;
+            text-decoration: none;
+        }
+        .serverP:hover{
+            color:#38BDF8;
+            transition:300ms ease-in;
+        }
+    </style>
+
+    <div class="page-wrapper">
+        <!--title-->
+        <div class="row columns-1">
+                <div class="col header-col">
+                    <header class="header">
+                        <h1 class="paragraph" style="color:#fefefe;font-size: 30px;">Avalable Servers List</h1>
+                    </header>
+                </div>
+        </div>
+
+        <!--servers list-->
+        <div class="row columns-1">
+            <div class="col" style="padding-left:50px;padding-right: 50px;">
+                <div id="serversList" style="width:100%;"></div>
+            </div>
+        </div>
+        
+        <!--footer-->
+        <div class="row columns-1">
+            <div class="col" style="align-items: center;justify-content: left;">
+                <footer class="footer" style="padding-top:20px;padding-bottom:20px;">
+                    <div class="row columns-2 center-content-hv">
+                        <p class="paragraph" style="color:#fefefe;font-size: 15px;">[ServersList]</p>
+                        <a class="button button-red" href="index.html" style="text-decoration: none;height:fit-content">back to main page</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        let container = document.getElementById("serversList");
+
+        container.style.gap = "2rem";
+        container.style.background = Colors.getColorAlpha("gray6", "AF");
+        container.style.borderRadius = "8px";
+        container.style.border = "2px solid " + Colors.getColor("gray5");
+        container.style.boxShadow = "5px 4px 3px " + Colors.getColor("gray6");
+        container.style.width = "100%";
+
+        let serversList=[
+            {name:"gateway",    ip:"172.18.0.1",    port:undefined},
+            {name:"openvpn",    ip:"172.18.0.2",    port:1194},
+            {name:"minecraft",  ip:"172.18.0.3",    port:25565},
+            {name:"openssh",    ip:"172.18.0.4",    port:22},
+            {name:"webflask",   ip:"172.18.0.5",    port:80},
+        ];
+
+        let textList = serversList.map(x => x.name + "["+x.ip+"]:"+x.port);
+        let idList = serversList.map(x => x.name);
+
+        DynamicHtmlListMaker.concatListToElement(container,"p",serversList.length,{
+            style: {
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center",
+                width: "100%",
+                paddingLeft: "10px",
+                paddingRight: "10px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                fontSize: "20px",
+            },
+            class: "serverP",
+            listText: textList,
+            idList: idList,
+            text: "",
+            html: "",
+        });
+
+    </script>
+
+</body>
+
+</html>

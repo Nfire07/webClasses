@@ -1,0 +1,141 @@
+/* Base card style */
+.card-red,
+.card-blue,
+.card-green,
+.card-disabled {
+    position: relative;
+    width: 15rem;
+    height: 15rem;
+    margin: 100px auto;
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: #121212;
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 300ms ease-in-out;
+}
+
+/* Card border gradients */
+.card-red::before,
+.card-blue::before,
+.card-green::before,
+.card-disabled::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.card-red::before {
+    background: linear-gradient(150deg,#b11b1b,#e92b2b,#F97316,#F59E0B,#cbf418);
+}
+.card-blue::before {
+    background: linear-gradient(135deg,#1E40AF,#3B82F6,#BAE6FD);
+}
+.card-green::before {
+    background: linear-gradient(135deg,#0a7804,#1eb910,#D9F99D);
+}
+.card-disabled::before {
+    background: linear-gradient(135deg,#4f4f4f,#858585,#efefef);
+}
+
+/* Card hover effect */
+.card-red:hover,
+.card-blue:hover,
+.card-green:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+/* Card link base style */
+.card-red-link,
+.card-blue-link,
+.card-green-link,
+.card-disabled-link {
+    width: fit-content;
+    font-weight: 800;
+    font-size: 20px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Card link colors */
+.card-red-link { color: #121212; }
+.card-blue-link { color: #121212; }
+.card-green-link { color: #121212; }
+.card-disabled-link {
+    color: #4f4f4f;
+    text-align: center;
+    cursor: not-allowed;
+}
+
+/* Animated underline for links */
+.card-red-link::before,
+.card-blue-link::before,
+.card-green-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    transform: scaleX(0);
+    transition: transform 300ms ease-in-out;
+    transform-origin: left;
+    border-radius: 2px;
+}
+
+.card-red-link::before {
+    background: linear-gradient(135deg,#b11b1b,#e92b2b,#F97316,#F59E0B,#cbf418);
+}
+.card-blue-link::before {
+    background: linear-gradient(135deg,#1E40AF,#3B82F6,#BAE6FD);
+}
+.card-green-link::before {
+    background: linear-gradient(135deg,#0a7804,#1eb910,#D9F99D);
+}
+
+.card-red-link:hover::before,
+.card-blue-link:hover::before,
+.card-green-link:hover::before {
+    transform: scaleX(1);
+}
+
+/* Disabled card/link: no hover effect */
+.card-disabled:hover,
+.card-disabled-link:hover::before {
+    transform: none;
+    transition: none;
+}
+
+@media (max-width: 600px) {
+  .card-red,
+  .card-blue,
+  .card-green,
+  .card-disabled {
+    width: 100%;
+    min-width: 200px;
+    max-width: 350px;
+    height: auto;
+    margin: 1.5rem auto;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+  }
+
+  .card-red-link,
+  .card-blue-link,
+  .card-green-link,
+  .card-disabled-link {
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+}

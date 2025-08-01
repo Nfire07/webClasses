@@ -1,0 +1,95 @@
+/* Base colors */
+:root {
+  --bg-dark: #2f2f2f;
+  --bg-dark-alpha: #2f2f2fFF;
+  --bg-light: #fefefe;
+  --bg-gradient: linear-gradient(150deg, #fefefe, #8585853e);
+  --text-light: #fff;
+}
+
+/* Layout structure */
+html {
+  background-color: var(--bg-dark);
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg-gradient);
+}
+
+.header,
+.footer {
+  display: flex;
+  background-color: var(--bg-dark-alpha);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.header {
+  margin-top: 0;
+}
+
+.footer {
+  margin-bottom: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+}
+
+.col {
+  flex: 1 1 auto;
+}
+
+/* Column layouts */
+.columns-1 .col { flex: 1 1 100%; }
+.columns-2 .col { flex: 1 1 50%; }
+.columns-3 .col { flex: 1 1 33.3333%; }
+.columns-4 .col { flex: 1 1 25%; }
+
+.header-col {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  padding: 0.5rem;
+}
+
+/* Centering utilities */
+.center-content      { display: flex; justify-content: center; }
+.center-content-h    { display: flex; justify-content: center; }
+.center-content-v    { display: flex; align-items: center; }
+.center-content-hv   { display: flex; justify-content: center; align-items: center; }
+
+/* Responsive: stack everything in a single column on mobile */
+@media (max-width: 600px) {
+  .page-wrapper,
+  .row {
+    flex-direction: column !important;
+    gap: 0.5rem;
+  }
+
+  .col,
+  .columns-1 .col,
+  .columns-2 .col,
+  .columns-3 .col,
+  .columns-4 .col {
+    flex: 1 1 100% !important;
+    max-width: 100%;
+  }
+
+  .header,
+  .footer {
+    flex-direction: column;
+    padding: 0.5rem 0;
+  }
+}

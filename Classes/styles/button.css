@@ -1,0 +1,49 @@
+/* Base button style */
+.button {
+    border: 1px solid #1f1f1f;
+    box-shadow: #4f4f4f 1px 2px 1px 1px;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1f1f1f;
+    border-radius: 12px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+/* Button color variants */
+.button-green { background-color: #1eb910; }
+.button-blue  { background-color: #3B82F6; }
+.button-red   { background-color: #e92b2b; }
+
+/* Hover states */
+.button-green:hover { background-color: #46e135; color: #2f2f2f; transform: scaleX(1.10); }
+.button-blue:hover  { background-color: #93C5FD; color: #2f2f2f; transform: scaleX(1.10); }
+.button-red:hover   { background-color: #f57777; color: #2f2f2f; transform: scaleX(1.10); }
+
+/* Active states */
+.button-green:active { background-color: #0a7804; transform: unset; transition: background-color 100ms ease-out; }
+.button-blue:active  { background-color: #1E40AF; transform: unset; transition: background-color 100ms ease-out; }
+.button-red:active   { background-color: #b11b1b; transform: unset; transition: background-color 100ms ease-out; }
+
+/* Disabled state (shared) */
+.button:disabled {
+    background-color: #a5a5a5;
+    color: #1f1f1f;
+    animation: none;
+    transform: none;
+    transition: none;
+}
+
+@media (max-width: 600px) {
+    .button {
+        width: 100%;
+        max-width: 120px;
+        font-size: 16px;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        border-radius: 16px;
+        margin: 0.5rem 0;
+    }
+}

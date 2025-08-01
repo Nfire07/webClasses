@@ -71,6 +71,10 @@ static colorPalette = {
         return this.colorPalette[key] || null;
     }
 
+    static getColorAlpha(key,alpha){
+        return this.colorPalette[key] + alpha || null;
+    }
+
     static populateSelectWithKeys(select){
     let list = this.getColorPaletteList();
     list.forEach(colorKey => {
